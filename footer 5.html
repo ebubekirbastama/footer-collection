@@ -1,0 +1,167 @@
+<!-- ========== NEWSPAPER FOOTER ========== -->
+<style>
+  :root{
+    --bg:#f8f7f3;
+    --ink:#1c1b19;
+    --muted:#5c5a57;
+    --rule:#e3e1db;
+    --accent:#d15800;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#121212; --ink:#f1efe9; --muted:#b6b2aa; --rule:#2a2a2a; --accent:#ff9c3a;
+    }
+  }
+  #footer.press{
+    background:var(--bg); color:var(--ink); font: 15px/1.6 "Georgia", "Times New Roman", serif; letter-spacing:.1px;
+    border-top: 1px solid var(--rule);
+  }
+  .press .wrap{max-width:1200px; margin:auto; padding:48px 20px;}
+  .press .grid{display:grid; gap:28px}
+  @media(min-width:992px){ .press .grid{grid-template-columns: 1.2fr 1fr 1fr;} }
+
+  /* Headings */
+  .press h4{
+    font-size:16px; text-transform:uppercase; letter-spacing:.12em;
+    margin:0 0 14px; border-bottom:2px solid var(--ink); display:inline-block; padding-bottom:4px;
+  }
+
+  /* About */
+  .press .logo{max-width:190px; height:auto; display:block; margin-bottom:14px}
+  .press p{color:var(--muted); margin:0 0 10px}
+
+  /* Social (inline svg) */
+  .press .social{display:flex; gap:10px; margin-top:12px}
+  .press .social a{display:inline-flex; width:36px; height:36px; align-items:center; justify-content:center;
+    border:1px solid var(--rule); border-radius:999px; background:transparent}
+  .press .social svg{width:18px; height:18px; fill:var(--ink)}
+
+  /* Trending list */
+  .press .post{display:grid; grid-template-columns: 96px 1fr; gap:12px; padding:10px 0; border-top:1px solid var(--rule)}
+  .press .post:first-of-type{border-top:0}
+  .press .post img{width:96px; height:64px; object-fit:cover; border:1px solid var(--rule)}
+  .press .post a.title{color:var(--ink); text-decoration:none; font-weight:700}
+  .press .post small{color:var(--muted); display:block}
+
+  /* Newsletter */
+  .press .nl{border:1px solid var(--rule); padding:16px; background:rgba(0,0,0,.02)}
+  @media (prefers-color-scheme: dark){ .press .nl{background:rgba(255,255,255,.03)} }
+  .press .nl form{display:flex; gap:10px; margin-top:10px}
+  .press input[type="email"]{flex:1; min-width:0; padding:12px 14px; border:1px solid var(--rule); background:transparent; color:var(--ink)}
+  .press button[type="submit"]{padding:12px 16px; border:1px solid var(--ink); background:var(--ink); color:var(--bg); cursor:pointer; font-weight:700}
+  .press button[type="submit"]:hover{filter:brightness(.95)}
+  .press .consent{display:flex; gap:8px; align-items:flex-start; margin-top:8px; color:var(--muted); font-size:13px}
+
+  /* Bottom bar */
+  .press .bottom{border-top:2px solid var(--ink); margin-top:28px; padding-top:16px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center}
+  .press .links{display:flex; flex-wrap:wrap; gap:14px}
+  .press .links a{color:var(--ink); text-decoration:none; border-bottom:1px solid transparent}
+  .press .links a:hover{border-bottom-color:var(--ink)}
+  .press .to-top{display:inline-flex; gap:8px; align-items:center; text-decoration:none; color:var(--ink)}
+  .press .to-top svg{width:16px; height:16px; fill:var(--ink)}
+</style>
+
+<footer id="footer" class="press" aria-label="Site alt bölümü">
+  <div class="wrap">
+    <div class="grid" itemscope itemtype="https://schema.org/Organization">
+      <!-- ABOUT -->
+      <section aria-labelledby="about">
+        <img src="https://beykozunsesi.com.tr/uploads/logo/logo_67a5d643156597-00473226.jpg" alt="Beykoz’un Sesi Logo" class="logo" width="190" height="56" itemprop="logo">
+        <p id="about"><strong itemprop="name">Beykoz’un Sesi</strong>, yerel ve ulusal habercilikte güvenilir bir kaynak olmayı amaçlayan, tarafsızlık ilkesini benimsemiş bir haber platformudur. Güçlü editör kadrosu ile hızlı ve doğru bilgiyi sunar.</p>
+
+        <nav class="social" aria-label="Sosyal medya">
+          <a href="https://www.facebook.com/beykozunsesicom" target="_blank" aria-label="Facebook" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.06C22 6.49 17.52 2 11.94 2 6.37 2 1.88 6.49 1.88 12.06c0 4.98 3.63 9.11 8.38 9.94v-7.03H7.9v-2.9h2.36V9.6c0-2.33 1.39-3.61 3.52-3.61.99 0 2.03.18 2.03.18v2.24h-1.14c-1.12 0-1.47.7-1.47 1.41v1.69h2.51l-.4 2.9h-2.1V22c4.75-.83 8.38-4.96 8.38-9.94z"/></svg>
+          </a>
+          <a href="https://x.com/beykozunsesicom" target="_blank" aria-label="Twitter/X" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h3.8l5.2 6.9L17.6 3H21l-7.3 9.7L21.5 21H17.7l-6-7.9L7 21H3.5l7.6-10L3 3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/beykozunsesicom" target="_blank" aria-label="Instagram" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3A4.7 4.7 0 1 0 12 16.7 4.7 4.7 0 0 0 12 7.3zm0-5.3c3 0 3.4 0 4.6.1 1.2.1 1.9.3 2.4.6.6.3 1 .6 1.5 1.1.5.5.8.9 1.1 1.5.3.5.5 1.2.6 2.4.1 1.2.1 1.6.1 4.6s0 3.4-.1 4.6c-.1 1.2-.3 1.9-.6 2.4-.3.6-.6 1-1.1 1.5-.5.5-.9.8-1.5 1.1-.5.3-1.2.5-2.4.6-1.2.1-1.6.1-4.6.1s-3.4 0-4.6-.1c-1.2-.1-1.9-.3-2.4-.6-.6-.3-1-.6-1.5-1.1-.5-.5-.8-.9-1.1-1.5-.3-.5-.5-1.2-.6-2.4C2 15.4 2 15 2 12s0-3.4.1-4.6c.1-1.2.3-1.9.6-2.4.3-.6.6-1 1.1-1.5.5-.5.9-.8 1.5-1.1.5-.3 1.2-.5 2.4-.6C8.6 2 9 2 12 2z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@beykozunsesi" target="_blank" aria-label="YouTube" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 7.1s-.2-1.6-.8-2.3c-.8-.8-1.7-.8-2.1-.9C17.5 3.5 12 3.5 12 3.5h0s-5.5 0-8.6.4c-.4 0-1.3.1-2.1.9C.7 5.5.5 7.1.5 7.1S0 9 0 10.8v1.6C0 14.2.5 16 .5 16s.2 1.6.8 2.3c.8.8 1.9.7 2.4.9 1.8.2 8.3.4 8.3.4s5.5 0 8.6-.4c.4-.1 1.3-.1 2.1-.9.6-.7.8-2.3.8-2.3s.5-1.9.5-3.6v-1.6c0-1.8-.5-3.7-.5-3.7zM9.6 14.7V7.9l6.2 3.4-6.2 3.4z"/></svg>
+          </a>
+          <a href="https://tr.pinterest.com/beykozunsesi" target="_blank" aria-label="Pinterest" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.2 2C7.6 2 4 5.3 4 9.7c0 3.1 1.8 4.8 2.9 4.8.5 0 .8-1.4.8-1.8 0-.5-1.3-1.6-1.3-3.7 0-4.4 5.6-7.4 9.6-4.9 3.4 2.1 2.7 9.1-1.1 9.1-1.9 0-3.3-1.5-2.8-3.3.6-2 1.7-4.1 1.7-5.5 0-3.2-4.7-2.6-4.7 1.5 0 1.3.5 2.2.5 2.2s-1.6 6.9-1.9 8.1c-.6 2.6-.1 5.7-.1 5.7s.1.2.2.1c.1 0 2.1-2.6 2.7-5 .2-.7 1-4 .1-4.6.8 1.5 3 2.3 4.8 2.3 3.6 0 6.2-2.6 6.2-6.6C21 5.3 17 2 12.2 2z"/></svg>
+          </a>
+          <a href="https://beykozunsesi.com.tr/rss-feeds" aria-label="RSS">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm-4-8v3a9 9 0 0 1 9 9h3c0-6.6-5.4-12-12-12zm0-5v3c9.4 0 17 7.6 17 17h3C22 8.4 13.6 0 2 0z"/></svg>
+          </a>
+        </nav>
+      </section>
+
+      <!-- TRENDING POSTS -->
+      <section aria-labelledby="trend">
+        <h4 id="trend">Trending Posts</h4>
+
+        <div class="post">
+          <a href="https://beykozunsesi.com.tr/trabzon-buyuksehirden-45-milyon-tllik-satis-plani">
+            <img src="https://beykozunsesi.com.tr/uploads/images/202502/image_140x98_67a542cfec9cd.webp" alt="Trabzon Büyükşehir’den 45 Milyon TL'lik Satış Planı">
+          </a>
+          <div>
+            <a class="title" href="https://beykozunsesi.com.tr/trabzon-buyuksehirden-45-milyon-tllik-satis-plani">Trabzon Büyükşehir’den 45 Milyon TL'lik Satış Planı</a>
+            <small>tahsin bastama • 7 Şubat 2025</small>
+          </div>
+        </div>
+
+        <div class="post">
+          <a href="https://beykozunsesi.com.tr/ismet-inoenunun-liderligi-dunya-barisi-icin-onemli-bir-katkidir">
+            <img src="https://beykozunsesi.com.tr/uploads/images/202502/image_140x98_67a535d98e500.webp" alt="İsmet İnönü’nün Liderliği Dünya Barışı İçin Önemli Bir Katkıdır">
+          </a>
+          <div>
+            <a class="title" href="https://beykozunsesi.com.tr/ismet-inoenunun-liderligi-dunya-barisi-icin-onemli-bir-katkidir">İsmet İnönü’nün Liderliği Dünya Barışı İçin Önemli Bir Katkıdır</a>
+            <small>tahsin bastama • 7 Şubat 2025</small>
+          </div>
+        </div>
+
+        <div class="post">
+          <a href="https://beykozunsesi.com.tr/goecek-halki-gunluklu-koyu-davasini-kazandi">
+            <img src="https://beykozunsesi.com.tr/uploads/images/202502/image_140x98_67a53ee0c9680.webp" alt="Göcek Halkı Günlüklü Koyu Davasını Kazandı">
+          </a>
+          <div>
+            <a class="title" href="https://beykozunsesi.com.tr/goecek-halki-gunluklu-koyu-davasini-kazandi">Göcek Halkı Günlüklü Koyu Davasını Kazandı</a>
+            <small>tahsin bastama • 7 Şubat 2025</small>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEWSLETTER -->
+      <section aria-labelledby="nl">
+        <h4 id="nl">Bülten</h4>
+        <div class="nl">
+          <p>En son haberleri, güncellemeleri ve seçilmiş içerikleri e-posta ile almak için abone olun.</p>
+          <form id="form_newsletter_footer" class="form-newsletter" novalidate>
+            <div style="display:none"><input type="text" name="website"></div>
+            <div>
+              <div style="display:flex; gap:10px">
+                <input type="email" name="email" placeholder="E-posta adresiniz" required aria-label="E-posta">
+                <button type="submit" aria-label="Abone ol">Abone</button>
+              </div>
+              <label class="consent">
+                <input type="checkbox" required aria-label="Aydınlatma metni onayı">
+                Abonelik koşullarını ve <a href="https://beykozunsesi.com.tr/cerez-politikasi" style="color:var(--ink)">aydınlatma metnini</a> kabul ediyorum.
+              </label>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="bottom">
+      <div>© 2025 Beykoz’un Sesi — Tüm hakları saklıdır.</div>
+      <nav class="links" aria-label="Yasal bağlantılar">
+        <a href="https://beykozunsesi.com.tr/cerez-politikasi">Çerez Politikası</a>
+        <a href="https://beykozunsesi.com.tr/sartlar-ve-kosullar">Şartlar ve Koşullar</a>
+        <a href="https://beykozunsesi.com.tr/iletisim">İletişim</a>
+        <a href="https://beykozunsesi.com.tr/kunye">Künye</a>
+        <a href="https://beykozunsesi.com.tr/galeri">Galeri</a>
+      </nav>
+      <a href="#top" class="to-top" aria-label="Başa dön">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l7 7-1.4 1.4L13 10.8V20h-2v-9.2L6.4 13.4 5 12z"/></svg>
+        Başa dön
+      </a>
+    </div>
+  </div>
+</footer>

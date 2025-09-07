@@ -1,0 +1,315 @@
+<!-- ========== FULL-FX FOOTER (CSS ONLY) ========== -->
+<style>
+  :root{
+    --bg:#0b0f1a;
+    --ink:#e8ecff;
+    --muted:#a8b0c9;
+    --line:rgba(255,255,255,.14);
+    --accent1:#7c3aed; /* mor */
+    --accent2:#06b6d4; /* camgöbeği */
+    --accent3:#f59e0b; /* amber */
+  }
+
+  /* FOOTER WRAPPER */
+  #footer.fx-super{
+    position:relative; overflow:hidden; color:var(--ink);
+    background:
+      radial-gradient(1200px 700px at -10% -20%, rgba(124,58,237,.15), transparent 40%),
+      radial-gradient(900px 500px at 110% 0%, rgba(6,182,212,.10), transparent 50%),
+      linear-gradient(180deg,#0a0d18,#0b0f1a 60%, #0c0f18);
+    font: 15px/1.65 "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
+  .fx-super .wrap{max-width:1200px;margin:auto;padding:72px 20px 28px;position:relative;z-index:3}
+
+  /* ========== BACKGROUND FX LAYERS ========== */
+  /* 1) Soft moving beams (conic gradients that spin) */
+  .fx-super .beam, .fx-super .beam.b2{
+    position:absolute; inset:-35%; filter:blur(60px); opacity:.35; z-index:1;
+    background: conic-gradient(from 0deg, rgba(124,58,237,.18), rgba(6,182,212,.18), rgba(245,158,11,.18), rgba(124,58,237,.18));
+    animation:spin 36s linear infinite;
+  }
+  .fx-super .beam.b2{ animation-duration: 52s; mix-blend-mode:screen; opacity:.25 }
+  @keyframes spin { to{ transform: rotate(360deg); } }
+
+  /* 2) Star/Dust layer (subtle particle twinkle) */
+  .fx-super .dust{
+    position:absolute; inset:0; z-index:2; pointer-events:none; opacity:.25;
+    background-image:
+      radial-gradient(#fff 1px, transparent 1.2px),
+      radial-gradient(#fff 0.8px, transparent 1px);
+    background-size: 26px 26px, 22px 22px;
+    background-position: 0 0, 13px 9px;
+    animation:twinkle 8s ease-in-out infinite alternate;
+  }
+  @keyframes twinkle {
+    0% { opacity:.18; filter:hue-rotate(0); }
+    100%{ opacity:.32; filter:hue-rotate(20deg); }
+  }
+
+  /* 3) Top waved cut (clip-path) */
+  .fx-super::before{
+    content:""; position:absolute; left:0; right:0; top:-1px; height:80px; z-index:2; opacity:.5;
+    background:linear-gradient(90deg, rgba(124,58,237,.35), rgba(6,182,212,.28), rgba(245,158,11,.28));
+    clip-path: polygon(0 0, 100% 0, 100% 55%, 80% 60%, 60% 52%, 40% 62%, 20% 56%, 0 64%);
+    filter: blur(6px);
+  }
+
+  /* ========== GRID LAYOUT ========== */
+  .fx-super .grid{display:grid; gap:28px}
+  @media(min-width:992px){ .fx-super .grid{ grid-template-columns: 1.15fr 1fr 1fr; } }
+
+  /* ========== CARDS (glass + neon border flow + sheen) ========== */
+  .fx-super .card{
+    position:relative; border:1px solid var(--line); border-radius:18px;
+    background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    backdrop-filter: blur(10px); padding:24px; transform-style:preserve-3d;
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+  }
+  .fx-super .card:hover{
+    transform: perspective(900px) rotateX(-2deg) rotateY(2deg) translateY(-2px);
+    border-color: rgba(124,58,237,.45);
+    box-shadow: 0 10px 30px rgba(6,182,212,.18);
+  }
+  /* gradient border animation */
+  .fx-super .card::after{
+    content:""; position:absolute; inset:-1px; border-radius:inherit; pointer-events:none; padding:1px;
+    background: linear-gradient(120deg, var(--accent1), var(--accent2), var(--accent3), var(--accent1));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; opacity:.35;
+    animation:borderFlow 10s linear infinite;
+  }
+  @keyframes borderFlow { to { filter:hue-rotate(360deg); } }
+  /* sheen on hover */
+  .fx-super .card::before{
+    content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; opacity:0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.25) 50%, transparent 70%);
+    transform: translateX(-40%);
+    transition: opacity .35s ease, transform .6s ease;
+  }
+  .fx-super .card:hover::before{ opacity:.9; transform: translateX(40%); }
+
+  /* HEADINGS w/ magnetic underline */
+  .fx-super h4{margin:0 0 16px; font-weight:800; letter-spacing:.3px; color:#fff; position:relative; display:inline-block}
+  .fx-super h4::after{
+    content:""; position:absolute; left:50%; bottom:-6px; width:66px; height:3px; border-radius:3px;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
+    transform: translateX(-50%) scaleX(.4); transform-origin:center; transition: transform .25s ease;
+  }
+  .fx-super h4:hover::after{ transform: translateX(-50%) scaleX(1); }
+
+  /* ABOUT */
+  .fx-super .logo{max-width:190px; height:auto; display:block; margin-bottom:14px; transition: transform .25s ease}
+  .fx-super .logo:hover{ transform: translateY(-2px) scale(1.02); }
+  .fx-super p{color:var(--muted); margin:0 0 10px}
+
+  /* Gradient text helper */
+  .fx-super .gtext{
+    background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
+    -webkit-background-clip:text; background-clip:text; color:transparent; font-weight:800;
+  }
+
+  /* Social icons (inline SVG) + glow */
+  .fx-super .social{display:flex; gap:10px; margin-top:14px; flex-wrap:wrap}
+  .fx-super .social a{
+    inline-size:40px; block-size:40px; display:inline-grid; place-items:center;
+    border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.04);
+    transition: .25s ease; position:relative;
+  }
+  .fx-super .social a::after{
+    content:attr(aria-label); position:absolute; bottom:48px; left:50%; transform:translateX(-50%);
+    background:rgba(0,0,0,.55); color:#fff; font-size:11px; padding:4px 8px; border-radius:6px;
+    opacity:0; pointer-events:none; transition:.2s ease;
+  }
+  .fx-super .social a:hover{ transform: translateY(-2px) scale(1.08); box-shadow:0 0 18px rgba(6,182,212,.25); border-color: rgba(124,58,237,.55) }
+  .fx-super .social a:hover::after{ opacity:1 }
+  .fx-super .social svg{width:18px; height:18px; fill:var(--ink)}
+
+  /* POSTS */
+  .fx-super .post{display:flex; gap:12px; align-items:center; padding:10px; border-radius:14px;
+    background:rgba(255,255,255,.03); border:1px dashed var(--line); transition: transform .2s ease }
+  .fx-super .post + .post{margin-top:12px}
+  .fx-super .post:hover{ transform: translateY(-2px) }
+  .fx-super .post img{width:88px; height:62px; object-fit:cover; border-radius:10px; transition: transform .25s ease, box-shadow .25s ease}
+  .fx-super .post:hover img{ transform: scale(1.05); box-shadow:0 8px 20px rgba(6,182,212,.2) }
+  .fx-super .post a.title{color:var(--ink); text-decoration:none; font-weight:700}
+  .fx-super .post a.title:hover{ color:#fff; text-shadow:0 0 10px var(--accent2) }
+  .fx-super .post small{color:var(--muted); display:block}
+
+  /* NEWSLETTER */
+  .fx-super .nl{display:flex; gap:10px; margin-top:10px}
+  .fx-super input[type="email"]{
+    flex:1; min-width:0; padding:12px 14px; border-radius:12px; border:1px solid var(--line);
+    background:rgba(255,255,255,.02); color:#fff; outline:none;
+    transition:border-color .25s ease, box-shadow .25s ease;
+  }
+  .fx-super input[type="email"]:focus{
+    border-color: rgba(6,182,212,.7);
+    box-shadow: 0 0 0 4px rgba(6,182,212,.14);
+  }
+  .fx-super .btn{
+    position:relative; overflow:hidden; padding:12px 16px; border-radius:12px; border:0; cursor:pointer;
+    font-weight:900; letter-spacing:.2px; color:#0b0f1a;
+    background: linear-gradient(90deg, var(--accent2), var(--accent3)); box-shadow:0 0 12px rgba(6,182,212,.35);
+    transition: transform .2s ease, filter .2s ease;
+  }
+  .fx-super .btn:hover{ transform: translateY(-2px); filter:brightness(.95) }
+  /* ripple-lite */
+  .fx-super .btn::after{
+    content:""; position:absolute; inset:0; background: radial-gradient(circle at center, rgba(255,255,255,.45) 0 14%, transparent 40%);
+    transform: scale(0); transition: transform .35s ease;
+  }
+  .fx-super .btn:active::after{ transform: scale(3); transition:none }
+
+  /* TICKER (marquee-like) */
+  .fx-super .ticker{
+    position:relative; border:1px solid var(--line); border-radius:12px; overflow:hidden; margin-bottom:24px;
+    background: rgba(255,255,255,.04);
+  }
+  .fx-super .ticker .track{
+    display:flex; gap:32px; white-space:nowrap; padding:10px 16px; animation:slide 22s linear infinite;
+  }
+  .fx-super .ticker .badge{
+    padding:4px 10px; border-radius:999px; font-size:12px; font-weight:800; color:#0b0f1a;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2)); box-shadow:0 0 10px rgba(124,58,237,.25);
+  }
+  @keyframes slide { to { transform: translateX(-50%); } }
+
+  /* BOTTOM BAR */
+  .fx-super .bottom{border-top:1px solid var(--line); margin-top:30px; padding-top:18px;
+    display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center}
+  .fx-super .links{display:flex; flex-wrap:wrap; gap:16px}
+  .fx-super .links a{color:var(--ink); text-decoration:none; position:relative}
+  .fx-super .links a::after{
+    content:""; position:absolute; left:0; right:100%; bottom:-3px; height:2px; border-radius:2px;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3)); transition:right .25s ease;
+  }
+  .fx-super .links a:hover::after{ right:0 }
+
+  /* SCROLL TO TOP button */
+  .fx-super .to-top{
+    display:inline-grid; place-items:center; width:40px; height:40px; border-radius:50%;
+    border:1px solid var(--line); background:rgba(255,255,255,.05); text-decoration:none;
+    transition:.25s ease;
+  }
+  .fx-super .to-top:hover{ transform:translateY(-2px) scale(1.08); box-shadow:0 0 16px rgba(245,158,11,.25); border-color:rgba(245,158,11,.6) }
+  .fx-super .to-top svg{width:16px;height:16px; fill:var(--ink)}
+
+  /* ACCESSIBILITY & REDUCED MOTION */
+  @media (prefers-reduced-motion: reduce){
+    .fx-super .beam, .fx-super .beam.b2, .fx-super .dust, .fx-super .card::before, .fx-super .card::after, .fx-super .ticker .track{ animation: none !important }
+    .fx-super .card:hover{ transform:none }
+  }
+
+  /* Selection color */
+  .fx-super ::selection{ background:rgba(124,58,237,.35) }
+</style>
+
+<footer id="footer" class="fx-super" aria-label="Site alt alanı">
+  <!-- BACKGROUND FX -->
+  <div class="beam" aria-hidden="true"></div>
+  <div class="beam b2" aria-hidden="true"></div>
+  <div class="dust" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <!-- TICKER -->
+    <div class="ticker" aria-label="Son dakika">
+      <div class="track">
+        <span class="badge">SON DAKİKA</span> Beykoz’un Sesi — Güvenilir, tarafsız, hızlı habercilik.
+        <span class="badge">GÜNDEM</span> En güncel gelişmeler için bültenimize abone olun.
+        <span class="badge">SON DAKİKA</span> Beykoz’un Sesi — Güvenilir, tarafsız, hızlı habercilik.
+        <span class="badge">GÜNDEM</span> En güncel gelişmeler için bültenimize abone olun.
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- ABOUT -->
+      <section class="card" aria-labelledby="about">
+        <img src="https://beykozunsesi.com.tr/uploads/logo/logo_67a5d643156597-00473226.jpg" alt="Beykoz’un Sesi Logo" class="logo" width="190" height="56">
+        <p id="about"><strong class="gtext">Beykoz’un Sesi</strong>, yerel ve ulusal habercilikte güvenilir kaynak olmayı amaçlar; tarafsız ilke ve güçlü altyapı ile en güncel gelişmeleri sunar.</p>
+
+        <nav class="social" aria-label="Sosyal medya">
+          <a href="https://www.facebook.com/beykozunsesicom" target="_blank" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M22 12.1A10 10 0 1 0 10.6 22v-7h-2.5v-2.8h2.5V9.4c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.5v1.8h2.8l-.5 2.8h-2.3V22A10 10 0 0 0 22 12.1z"/></svg>
+          </a>
+          <a href="https://x.com/beykozunsesicom" target="_blank" aria-label="Twitter/X">
+            <svg viewBox="0 0 24 24"><path d="M3 3h3.9l5.2 6.9L17.7 3H21l-7.4 9.7L21.5 21h-3.9l-6-7.9L7 21H3.5l7.7-10L3 3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/beykozunsesicom" target="_blank" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 7.2A4.8 4.8 0 1 0 12 16.8 4.8 4.8 0 0 0 12 7.2zm0-5.2c3 0 3.4 0 4.6.1s1.9.3 2.4.6 1 .6 1.5 1.1.8.9 1.1 1.5.5 1.2.6 2.4.1 1.6.1 4.6 0 3.4-.1 4.6-.3 1.9-.6 2.4-.6 1-1.1 1.5-.9.8-1.5 1.1-1.2.5-2.4.6-1.6.1-4.6.1-3.4 0-4.6-.1-1.9-.3-2.4-.6-1-.6-1.5-1.1-.8-.9-1.1-1.5-.5-1.2-.6-2.4C2 15.4 2 15 2 12s0-3.4.1-4.6.3-1.9.6-2.4.6-1 1.1-1.5.9-.8 1.5-1.1 1.2-.5 2.4-.6S9 2 12 2z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@beykozunsesi" target="_blank" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23.5 7s-.2-1.6-.8-2.3c-.6-.7-1.4-.9-2.2-1C17.4 3.4 12 3.4 12 3.4s-5.4 0-8.5.3c-.8.1-1.6.3-2.2 1C.6 5.4.5 7 .5 7S0 8.8 0 10.6v1.7C0 14 .5 15.8.5 15.8s.1 1.6.8 2.3c.6.7 1.5.9 2.3 1 3.1.3 8.4.3 8.4.3s5.4 0 8.5-.3c.8-.1 1.6-.3 2.2-1 .6-.7.8-2.3.8-2.3s.5-1.8.5-3.6V10.6c0-1.8-.5-3.6-.5-3.6zM9.7 14.8V8l6.2 3.4-6.2 3.4z"/></svg>
+          </a>
+          <a href="https://tr.pinterest.com/beykozunsesi" target="_blank" aria-label="Pinterest">
+            <svg viewBox="0 0 24 24"><path d="M12.1 2C7.5 2 4 5.3 4 9.7c0 3.1 1.8 4.8 2.9 4.8.5 0 .8-1.4.8-1.8 0-.6-1.3-1.6-1.3-3.7C6.4 4.6 12 1.6 16 4.1c3.4 2.1 2.6 9.1-1.2 9.1-1.9 0-3.3-1.5-2.8-3.3.6-2 1.7-4.1 1.7-5.5 0-3.2-4.7-2.6-4.7 1.5 0 1.3.5 2.2.5 2.2s-1.6 6.9-1.9 8.1c-.5 2.3.2 5.7.2 5.7s.1.1.2.1c.1 0 2-2.5 2.6-4.9.3-1.3 1-4 .1-4.6.9 1.5 3 2.3 4.8 2.3 3.6 0 6.2-2.6 6.2-6.6C21 5.3 17 2 12.1 2z"/></svg>
+          </a>
+          <a href="https://beykozunsesi.com.tr/rss-feeds" aria-label="RSS">
+            <svg viewBox="0 0 24 24"><path d="M6 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm-4-8v3a9 9 0 0 1 9 9h3c0-6.6-5.4-12-12-12zm0-5v3c9.4 0 17 7.6 17 17h3C22 8.4 13.6 0 2 0z"/></svg>
+          </a>
+        </nav>
+      </section>
+
+      <!-- TRENDING POSTS -->
+      <section class="card" aria-labelledby="trend">
+        <h4 id="trend">Trending Posts</h4>
+
+        <article class="post">
+          <a href="https://beykozunsesi.com.tr/trabzon-buyuksehirden-45-milyon-tllik-satis-plani">
+            <img src="https://beykozunsesi.com.tr/uploads/images/202502/image_140x98_67a542cfec9cd.webp" alt="Trabzon Büyükşehir’den 45 Milyon TL'lik Satış Planı">
+          </a>
+          <div>
+            <a class="title" href="https://beykozunsesi.com.tr/trabzon-buyuksehirden-45-milyon-tllik-satis-plani">Trabzon Büyükşehir’den 45 Milyon TL'lik Satış Planı</a>
+            <small>tahsin bastama • 7 Şubat 2025</small>
+          </div>
+        </article>
+
+        <article class="post">
+          <a href="https://beykozunsesi.com.tr/ismet-inoenunun-liderligi-dunya-barisi-icin-onemli-bir-katkidir">
+            <img src="https://beykozunsesi.com.tr/uploads/images/202502/image_140x98_67a535d98e500.webp" alt="İsmet İnönü’nün Liderliği Dünya Barışı İçin Önemli Bir Katkıdır">
+          </a>
+          <div>
+            <a class="title" href="https://beykozunsesi.com.tr/ismet-inoenunun-liderligi-dunya-barisi-icin-onemli-bir-katkidir">İsmet İnönü’nün Liderliği Dünya Barışı İçin Önemli Bir Katkıdır</a>
+            <small>tahsin bastama • 7 Şubat 2025</small>
+          </div>
+        </article>
+
+        <article class="post">
+          <a href="https://beykozunsesi.com.tr/goecek-halki-gunluklu-koyu-davasini-kazandi">
+            <img src="https://beykozunsesi.com.tr/uploads/images/202502/image_140x98_67a53ee0c9680.webp" alt="Göcek Halkı Günlüklü Koyu Davasını Kazandı">
+          </a>
+          <div>
+            <a class="title" href="https://beykozunsesi.com.tr/goecek-halki-gunluklu-koyu-davasini-kazandi">Göcek Halkı Günlüklü Koyu Davasını Kazandı</a>
+            <small>tahsin bastama • 7 Şubat 2025</small>
+          </div>
+        </article>
+      </section>
+
+      <!-- NEWSLETTER -->
+      <section class="card" aria-labelledby="nl">
+        <h4 id="nl">Bülten</h4>
+        <p style="color:var(--muted)">En güncel haberleri e-posta ile almak için abone olun.</p>
+        <form id="form_newsletter_footer" class="form-newsletter" novalidate>
+          <div class="nl">
+            <input type="email" name="email" placeholder="E-posta adresiniz" required aria-label="E-posta">
+            <button type="submit" class="btn" aria-label="Abone ol">Abone</button>
+          </div>
+          <label style="display:flex;gap:8px;align-items:flex-start;margin-top:10px;color:var(--muted);font-size:13px">
+            <input type="checkbox" required aria-label="Aydınlatma metni onayı">
+            Abone olarak <a href="https://beykozunsesi.com.tr/cerez-politikasi" style="margin-left:6px;color:#cfeaff;text-decoration:underline">aydınlatma metnini</a> kabul ediyorum.
+          </label>
+        </form>
+      </section>
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="bottom">
+      <div>© 2025 Beykoz’un Sesi — Tüm hakları saklıdır.</div>
+      <nav class="links" aria-label="Yasal bağlantılar">
+        <a href="https://beykozunsesi.com.tr/cerez-politikasi">Çerez Politikası</a>
+        <a href="https://beykozunsesi.com.tr/sartlar-ve-kosullar">Şartlar ve Koşullar</a>
+        <a href="https://beykozunsesi.com.tr/iletisim">İletişim</a>
+        <a href="https://beykozunsesi.com.tr/kunye">Künye</a>
+        <a href="https://beykozunsesi.com.tr/galeri">Galeri</a>
+      </nav>
+      <a href="#top" class="to-top" aria-label="Başa dön">
+        <svg viewBox="0 0 24 24"><path d="M12 5l7 7-1.4 1.4L13 10.8V20h

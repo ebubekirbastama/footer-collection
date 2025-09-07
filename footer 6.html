@@ -1,0 +1,328 @@
+<!-- ========== CSS EFFECT FOOTER ========== -->
+<style>
+  :root {
+    --footer-bg: linear-gradient(135deg, #1f1c2c, #928dab);
+    --footer-panel: rgba(255, 255, 255, 0.05);
+    --footer-border: rgba(255, 255, 255, 0.15);
+    --footer-text: #e2e2e2;
+    --footer-heading: #fff;
+    --footer-accent: #fbbf24;
+  }
+
+  /* FOOTER CONTAINER */
+  #footer.effect-footer {
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* BACKGROUND ANIMATION */
+  #footer.effect-footer::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,.05) 10%, transparent 30%);
+    animation: rotate 30s linear infinite;
+    z-index: 0;
+  }
+
+  @keyframes rotate {
+    0% {transform: rotate(0);}
+    100% {transform: rotate(360deg);}
+  }
+
+  #footer.effect-footer .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: auto;
+    padding: 60px 20px 20px;
+  }
+
+  /* GRID */
+  #footer.effect-footer .footer-grid {
+    display: grid;
+    gap: 30px;
+  }
+  @media (min-width: 992px) {
+    #footer.effect-footer .footer-grid {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  /* FOOTER CARD STYLE */
+  .effect-footer .footer-card {
+    padding: 25px;
+    background: var(--footer-panel);
+    border: 1px solid var(--footer-border);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .effect-footer .footer-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--footer-accent);
+  }
+
+  /* HEADINGS */
+  .effect-footer h4 {
+    color: var(--footer-heading);
+    font-size: 18px;
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .effect-footer h4::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 40px;
+    height: 3px;
+    background: var(--footer-accent);
+    border-radius: 3px;
+  }
+
+  /* ABOUT SECTION */
+  .effect-footer .footer-logo img {
+    max-width: 180px;
+    margin-bottom: 14px;
+    transition: transform 0.3s ease;
+  }
+
+  .effect-footer .footer-logo img:hover {
+    transform: scale(1.05);
+  }
+
+  /* ABOUT TEXT */
+  .effect-footer p {
+    line-height: 1.6;
+  }
+
+  /* SOCIAL ICONS */
+  .effect-footer .social {
+    display: flex;
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  .effect-footer .social a {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--footer-panel);
+    border: 1px solid var(--footer-border);
+    border-radius: 50%;
+    color: var(--footer-heading);
+    transition: 0.3s ease;
+    position: relative;
+  }
+
+  .effect-footer .social a:hover {
+    transform: scale(1.2);
+    color: var(--footer-accent);
+    box-shadow: 0 0 10px var(--footer-accent);
+  }
+
+  /* TRENDING POSTS */
+  .effect-footer .post {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 18px;
+    align-items: center;
+  }
+
+  .effect-footer .post img {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+
+  .effect-footer .post img:hover {
+    transform: scale(1.1);
+  }
+
+  .effect-footer .post h5 {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .effect-footer .post a {
+    color: var(--footer-heading);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .effect-footer .post a:hover {
+    color: var(--footer-accent);
+  }
+
+  .effect-footer .post small {
+    display: block;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+  }
+
+  /* NEWSLETTER */
+  .effect-footer .newsletter-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .effect-footer .newsletter-form input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid var(--footer-border);
+    border-radius: 10px;
+    background: transparent;
+    color: #fff;
+    outline: none;
+  }
+
+  .effect-footer .newsletter-form button {
+    padding: 12px 18px;
+    background: var(--footer-accent);
+    color: #000;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s ease;
+  }
+
+  .effect-footer .newsletter-form button:hover {
+    filter: brightness(0.9);
+  }
+
+  /* BOTTOM BAR */
+  .effect-footer .footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--footer-border);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+  }
+
+  @media (min-width: 768px) {
+    .effect-footer .footer-bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {opacity: 0; transform: translateY(20px);}
+    100% {opacity: 1; transform: translateY(0);}
+  }
+
+  .effect-footer .footer-bottom .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .effect-footer .footer-bottom .links a {
+    color: var(--footer-text);
+    transition: color 0.3s ease;
+  }
+
+  .effect-footer .footer-bottom .links a:hover {
+    color: var(--footer-accent);
+  }
+</style>
+
+<footer id="footer" class="effect-footer">
+  <div class="container">
+    <div class="footer-grid">
+      
+      <!-- ABOUT -->
+      <div class="footer-card">
+        <div class="footer-logo">
+          <img src="https://beykozunsesi.com.tr/uploads/logo/logo_67a5d643156597-00473226.jpg" alt="Beykoz'un Sesi Logo">
+        </div>
+        <p>
+          <strong>Beykoz’un Sesi</strong>, tarafsız ve güvenilir habercilik anlayışıyla,
+          en güncel gelişmeleri okuyucularına sunar. Hızlı ve doğru haber için
+          profesyonel editör ekibiyle hizmet verir.
+        </p>
+        <div class="social">
+          <a href="https://www.facebook.com/beykozunsesicom" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/beykozunsesicom" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/beykozunsesicom" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@beykozunsesi" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="https://tr.pinterest.com/beykozunsesi" target="_blank"><i class="fab fa-pinterest"></i></a>
+          <a href="https://beykozunsesi.com.tr/rss-feeds"><i class="fas fa-rss"></i></a>
+        </div>
+      </div>
+
+      <!-- TRENDING POSTS -->
+      <div class="footer-card">
+        <h4>Trending Posts</h4>
+        
+        <div class="post">
+          <img src="https://beykozunsesi.com.tr/uploads/images/202502/image_140x98_67a542cfec9cd.webp" alt="Trabzon Büyükşehir’den 45 Milyon TL'lik Satış Planı">
+          <div>
+            <h5><a href="https://beykozunsesi.com.tr/trabzon-buyuksehirden-45-milyon-tllik-satis-plani">Trabzon Büyükşehir’den 45 Milyon TL'lik Satış Planı</a></h5>
+            <small>tahsin bastama - 7 Şubat 2025</small>
+          </div>
+        </div>
+
+        <div class="post">
+          <img src="https://beykozunsesi.com.tr/uploads/images/202502/image_140x98_67a535d98e500.webp" alt="İsmet İnönü Liderlik">
+          <div>
+            <h5><a href="https://beykozunsesi.com.tr/ismet-inoenunun-liderligi-dunya-barisi-icin-onemli-bir-katkidir">İsmet İnönü’nün Liderliği Dünya Barışı İçin Önemli Bir Katkıdır</a></h5>
+            <small>tahsin bastama - 7 Şubat 2025</small>
+          </div>
+        </div>
+
+        <div class="post">
+          <img src="https://beykozunsesi.com.tr/uploads/images/202502/image_140x98_67a53ee0c9680.webp" alt="Göcek Halkı Davası">
+          <div>
+            <h5><a href="https://beykozunsesi.com.tr/goecek-halki-gunluklu-koyu-davasini-kazandi">Göcek Halkı Günlüklü Koyu Davasını Kazandı</a></h5>
+            <small>tahsin bastama - 7 Şubat 2025</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEWSLETTER -->
+      <div class="footer-card">
+        <h4>Bülten</h4>
+        <p>En güncel haberleri almak için bültenimize abone olun.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="E-posta adresiniz" required>
+          <button type="submit">Abone</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="footer-bottom">
+      <div>© 2025 Beykoz’un Sesi - Tüm Hakları Saklıdır.</div>
+      <div class="links">
+        <a href="https://beykozunsesi.com.tr/cerez-politikasi">Çerez Politikası</a>
+        <a href="https://beykozunsesi.com.tr/sartlar-ve-kosullar">Şartlar ve Koşullar</a>
+        <a href="https://beykozunsesi.com.tr/iletisim">İletişim</a>
+        <a href="https://beykozunsesi.com.tr/kunye">Künye</a>
+        <a href="https://beykozunsesi.com.tr/galeri">Galeri</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Font Awesome for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
